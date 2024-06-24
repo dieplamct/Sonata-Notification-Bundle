@@ -1,5 +1,5 @@
 {
-    "name": "sonata-project/notification-bundle",
+    "name": "dieplamct/sonata-notification-bundle",
     "description": "Symfony SonataNotificationBundle",
     "license": "MIT",
     "type": "symfony-bundle",
@@ -93,7 +93,7 @@
     },
     "extra": {
         "branch-alias": {
-            "dev-master": "3.x-dev"
+            "dev-master": "dev"
         }
     }
 }
