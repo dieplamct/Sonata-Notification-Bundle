@@ -13,7 +13,8 @@ declare(strict_types=1);
 
 namespace Sonata\NotificationBundle\Command;
 
-use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
+// use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
+use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -21,7 +22,7 @@ use Symfony\Component\Console\Output\OutputInterface;
 /**
  * @final since sonata-project/notification-bundle 3.13
  */
-class CreateAndPublishCommand extends ContainerAwareCommand
+class CreateAndPublishCommand extends Command
 {
     public function configure()
     {
@@ -40,7 +41,7 @@ class CreateAndPublishCommand extends ContainerAwareCommand
             throw new \InvalidArgumentException('Body does not contain valid json.');
         }
 
-        $this->getContainer()
+        $this->getApplication()
             ->get('sonata.notification.backend')
             ->createAndPublish($type, $body);
 

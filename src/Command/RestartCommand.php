@@ -18,7 +18,8 @@ use Sonata\NotificationBundle\Event\IterateEvent;
 use Sonata\NotificationBundle\Iterator\ErroneousMessageIterator;
 use Sonata\NotificationBundle\Model\MessageManagerInterface;
 use Sonata\NotificationBundle\Selector\ErroneousMessagesSelector;
-use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
+// use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
+use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -27,7 +28,7 @@ use Symfony\Contracts\EventDispatcher\EventDispatcherInterface;
 /**
  * @final since sonata-project/notification-bundle 3.13
  */
-class RestartCommand extends ContainerAwareCommand
+class RestartCommand extends Command
 {
     public function configure()
     {
@@ -80,7 +81,7 @@ class RestartCommand extends ContainerAwareCommand
         }
 
         /** @var EventDispatcherInterface $eventDispatcher */
-        $eventDispatcher = $this->getContainer()->get('event_dispatcher');
+        $eventDispatcher = $this->getApplication()->get('event_dispatcher');
 
         foreach ($messages as $message) {
             $id = $message->getId();
@@ -114,7 +115,7 @@ class RestartCommand extends ContainerAwareCommand
      */
     protected function getErroneousMessageSelector()
     {
-        return $this->getContainer()->get('sonata.notification.erroneous_messages_selector');
+        return $this->getApplication()->get('sonata.notification.erroneous_messages_selector');
     }
 
     /**
@@ -122,7 +123,7 @@ class RestartCommand extends ContainerAwareCommand
      */
     protected function getMessageManager()
     {
-        return $this->getContainer()->get('sonata.notification.manager.message');
+        return $this->getApplication()->get('sonata.notification.manager.message');
     }
 
     /**
@@ -130,6 +131,6 @@ class RestartCommand extends ContainerAwareCommand
      */
     protected function getBackend()
     {
-        return $this->getContainer()->get('sonata.notification.backend');
+        return $this->getApplication()->get('sonata.notification.backend');
     }
 }
