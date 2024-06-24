@@ -1,5 +1,5 @@
 {
-    "name": "sonata-project/notification-bundle",
+    "name": "dieplamct/sonata-notification-bundle",
     "description": "Symfony SonataNotificationBundle",
     "license": "MIT",
     "type": "symfony-bundle",
